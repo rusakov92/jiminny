@@ -14,4 +14,4 @@ To run this solution it will require a preinstalled docker and docker compose.
 ```shell
 docker-compose up -d --build
 ```
-2. Hit the API endpoint http://127.0.0.1:8181/
+2. Hit API endpoint http://127.0.0.1:8181/
