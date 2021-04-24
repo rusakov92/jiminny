@@ -1,0 +1,33 @@
+version: '3.9'
+networks:
+    backend:
+        name: jiminny-backend-network
+        driver: bridge
+services:
+    web:
+        container_name: jiminny-web
+        image: jiminny:latest
+        build:
+            context: .
+            args:
+                ENV: development
+        tty: true
+        ports:
+            - 8181:80
+        networks:
+            - backend
+        working_dir: /
+        volumes:
+            - .:/jiminny
+        entrypoint: ["/bin/bash", "/jiminny/docker/docker_entrypoint.sh"]
+        healthcheck:
+            test: ["CMD", "curl", "--silent", "--fail", "http://localhost/fpm-ping"]
+            timeout: 10s
+            interval: 5m
+            retries: 3
+            start_period: 30s
+        dns:
+            - 8.8.8.8
+            - 8.8.4.4
+            - 1.1.1.1
+            - 1.0.0.1
