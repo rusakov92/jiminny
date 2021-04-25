@@ -6,8 +6,6 @@ namespace Jiminny\Solution;
 
 use Illuminate\Http\JsonResponse;
 
-use function round;
-
 /**
  * Class SolutionResponse.
  */
@@ -26,7 +24,7 @@ class SolutionResponse extends JsonResponse
         parent::__construct([
             'longest_user_monologue' => $userActiveAudio->getLongestMonologInSeconds(),
             'longest_customer_monologue' => $customerActiveAudio->getLongestMonologInSeconds(),
-            'user_talk_percentage' => round(($userActiveAudio->getEntireMonolog() / $user->getAudioEndMilliseconds()) * 100, 2),
+            'user_talk_percentage' => Utility::calculatePercentage($userActiveAudio->getEntireMonolog(), $user->getAudioEndMilliseconds()),
             'user' => $userActiveAudio->toPointsInSeconds(),
             'customer' => $customerActiveAudio->toPointsInSeconds(),
         ], $status, $headers, $options);

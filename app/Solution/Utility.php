@@ -23,4 +23,9 @@ class Utility
     {
         return (float) (abs($milliseconds) / 1000);
     }
+
+    public static function calculatePercentage(int $portionValue, int $entireValue): float
+    {
+        return round(($portionValue / $entireValue) * 100, 2);
+    }
 }
