@@ -2,16 +2,16 @@
 
 declare(strict_types = 1);
 
-namespace Jiminny\Solution\UserAudio;
+namespace Jiminny\Solution\CustomerAudio;
 
 use Jiminny\Solution\AudioProvider;
 use Jiminny\Solution\AudioSilenceIterator;
 use Jiminny\Solution\SampleAudio\SampleAudioService;
 
 /**
- * Class UserAudioService provides audio data from the user.
+ * Class CustomerAudioService provides audio data from the customer.
  */
-class UserAudioService implements AudioProvider
+class CustomerAudioService implements AudioProvider
 {
     private SampleAudioService $sampleAudioService;
 
@@ -23,7 +23,7 @@ class UserAudioService implements AudioProvider
     public function getAudioSilenceData(): AudioSilenceIterator
     {
         return new AudioSilenceIterator(
-            $this->sampleAudioService->readSampleAudioSilenceFile('user-channel.txt')
+            $this->sampleAudioService->readSampleAudioSilenceFile('customer-channel.txt'),
         );
     }
 }

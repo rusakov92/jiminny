@@ -6,24 +6,29 @@ namespace Jiminny\Solution\Controller;
 
 use Illuminate\Http\JsonResponse;
 use Jiminny\Http\Controllers\Controller;
+use Jiminny\Solution\CustomerAudio\CustomerAudioService;
+use Jiminny\Solution\SolutionResponse;
 use Jiminny\Solution\UserAudio\UserAudioService;
 
-use function response;
-
 /**
- * Class SolutionController.
+ * Class SolutionController solves the jiminny task.
  */
 class SolutionController extends Controller
 {
-    protected UserAudioService $userAudioService;
+    private UserAudioService $userAudioService;
+    private CustomerAudioService $customerAudioService;
 
-    public function __construct(UserAudioService $userAudioService)
+    public function __construct(UserAudioService $userAudioService, CustomerAudioService $customerAudioService)
     {
         $this->userAudioService = $userAudioService;
+        $this->customerAudioService = $customerAudioService;
     }
 
     public function calculateActiveAudioDuration(): JsonResponse
     {
-        return response()->json(['asd']);
+        $userData = $this->userAudioService->getAudioSilenceData();
+        $customerData = $this->customerAudioService->getAudioSilenceData();
+
+        return new SolutionResponse($userData, $customerData);
     }
 }
