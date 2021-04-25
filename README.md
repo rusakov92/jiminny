@@ -4,7 +4,13 @@
 
 ---
 
-To run this solution it will require a preinstalled docker and docker compose.
+To run this solution it will require to first installed docker and docker-compose.
+
+#### Code structure
+
+---
+
+Everything related to solving the task can be found in folder app/Solution.
 
 #### Run solution
 
