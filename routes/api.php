@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Jiminny\Solution\Controller\SolutionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/test', function (Request $request) {
-    var_dump('asd');die;
-});
+Route::get('/solution', [SolutionController::class, 'calculateActiveAudioDuration']);

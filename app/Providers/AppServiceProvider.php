@@ -3,6 +3,7 @@
 namespace Jiminny\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Jiminny\Solution\UserAudio\UserAudioService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(UserAudioService::class, static fn() => new UserAudioService());
     }
 
     /**
